@@ -1,0 +1,28 @@
+In Windows there are multiple ways to build this project. Obviously there are Release and Debug variants, but the more significant types are the .exe and .dll (actually .xll, for use as an excel plugin) variants as well as their x86, and x64 flavours. These can all be built with the free Microsoft Visual Studio IDE (although you'll likely have to install the Windows Development Kit for the x64 targets - but I'm not sure).
+
+*** Compiling with Visual Studio
+
+*** Compiling with WinDDK
+
+If you compile with the Visual Studio IDE you will require anyone that uses your compiled code to also install a runtime library - which version will depend upon which version of the IDE you compiled the code with. There is a way to relax the requirement of installing a redistributable (say, for locked-down machine environments) but requires using an alternate compiler from Microsoft - the Device Driver Kit (sometimes called the WindDDK). It is not a visual compilation environment but a command line environment which you might have trouble getting used to. The real bonus is that you'll be able to mak excel plugins that don't require the installation of extra stuff.
+
+The Windows DDK comes with a really good compiler that can target x86, x64, ia32, ia64 architectures and multiple OS flavors of Windows. You might not have used it before, so I'm providing a brief introduction.
+
+Download and install the Windows Device Driver Kit. The one on my machine is a bit older (7600.16385.1) but it'll work to provide examples. When you install it, it'll go into a directory like:
+
+c:\WinDDK\7600.16385.1
+
+So, open an command prompt, cd to that directory and run setenv.bat with some args to specify what kind of build you will be making (ie, a checked or free build, an x86, x64, ia32, ia64 target processor and the target OS). So, type:
+
+cd c:\WinDDK\7600.16385.1\bin
+setenv c:\WinDDK\7600.16385.1 fre x64 win7
+
+Now you can cd to your local folder where you have the .c files for the core dp code and run build:
+
+cd c:\code\ohdp-core-a\src
+build
+
+Now, with the same console, switch over to the folder for the excel plugin:
+
+cd ..\ohdp-xlplugin-a\src
+build

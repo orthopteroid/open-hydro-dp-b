@@ -1,0 +1,25 @@
+;LIBRARY HydroDP.xll ;not specifially needed?
+
+EXPORTS
+	xlAutoOpen
+	xlAutoClose
+	xlAutoAdd
+	xlAutoRemove
+	xlAddInManagerInfo
+	xlAutoFree
+	;
+	HydroAbout
+	HydroVersion
+	HydroOptPTable
+	HydroOptQTable
+	HydroOptQValue
+	HydroOptQValue2
+	HydroOptPValue
+	HydroOptPValue2
+	HydroOptQValueHK
+	HydroOptQValueHK2
+	HydroOptQPoints
+	HydroOptQPoints2
+	HydroOptimizeSpecificQ
+	HydroOptimizeOPQ
+;	HydroTest

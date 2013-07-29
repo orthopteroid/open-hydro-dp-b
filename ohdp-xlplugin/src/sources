@@ -1,0 +1,20 @@
+# http://www.wd-3.com/archive/WinBuild.htm
+TARGETNAME=hydrodp
+USE_MSVCRT=1
+UMTYPE=windows
+TARGETTYPE=DYNLINK
+TARGETEXT=XLL
+
+SOURCES=HydroDP.c
+
+INCLUDES=..\..\..\dphk\include ; ..\include
+
+C_DEFINES = -D_MT -D_WIN32 -D_WINDOWS -D_WINDDK -D_WIN32DLL \
+    -D_ATL_NO_DEBUG_CRT # because we are using USE_MSVCRT=1 
+	
+USER_C_FLAGS = /fp:fast # /arch:SSE2 # 
+
+DLLENTRY=DllMain
+
+TARGETLIBS=..\..\..\dpHK\src\obj$(BUILD_ALT_DIR)\*\ohdp-core.lib $(SDK_LIB_PATH)\kernel32.lib
+

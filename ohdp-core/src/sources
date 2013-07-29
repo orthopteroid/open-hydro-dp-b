@@ -1,0 +1,17 @@
+TARGETNAME=ohdp-core
+USE_MSVCRT=1
+UMTYPE=windows
+TARGETTYPE=LIBRARY
+TARGETEXT=LIB
+
+SOURCES=main.c
+
+INCLUDES=..\include
+
+C_DEFINES = -D_MT -D_WIN32 -D_WINDOWS -D_WINDDK -D_WIN32DLL \
+    -D_ATL_NO_DEBUG_CRT # because we are using USE_MSVCRT=1 
+
+USER_C_FLAGS = /fp:fast # /arch:SSE2 # /fp:fast
+
+#TARGETLIBS=$(SDK_LIB_PATH)\ole32.lib $(SDK_LIB_PATH)\oleaut32.lib $(SDK_LIB_PATH)\uuid.lib
+

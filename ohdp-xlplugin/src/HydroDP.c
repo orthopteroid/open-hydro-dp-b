@@ -84,7 +84,7 @@ typedef unsigned short int UINT16;
 #define ADDIN_NAME "HydroDP"
 #define ADDIN_VERSIONED_NAME "HydroDP " HDP_VNUM
 #define ADDIN_DESCRIPTION "Dynamic Programming for Unit Dispatch"
-#define ADDIN_COPYRIGHT "Copyright CddHoward Consulting Ltd."
+#define ADDIN_COPYRIGHT "John Howard, Apache License Ver2"
 #define ADDIN_VERSION "Version: " HDP_VNUM "/" DP_VNUM " " BUILDTYPE
 #define ADDIN_DATE "Date: " __DATE__ ", " __TIME__
 

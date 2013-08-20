@@ -1,0 +1,33 @@
+The Open Hydro DP module is designed to solve a particular problem in a particular way - it makes no guarantee this is the right tool for your problem (known caveats for it use are a later discussion).
+
+*** What this module does
+
+This module solves the problem of dispatching a hydroelectric plant's turbines for an instant in time. The module can dispatch either total plant load or river discharge for a group of turbines at a single plant with a single head.
+
+[ The open-hydro-dp-a branch was only verified with the dispatching of river Discharge, but branch -b included changes that improved stability to be used either way. ]
+
+This means that something else must determine what the plant load should be or what the river discharge should be. The component that makes that kind of decision should be cognizant of the operation of the plant in a system context - this could include representing a coarser model of the plant in a system DP or LP model.
+
+[ This module has been deployed in an excel-based integrated LP modelling system, where aggregate plant operation is controlled by piecewise constraints that have a close relationship to the shape of the solution surface this DP module provides. Building such an integrated model can be a laborious and costly task - for an introduction, see the later section. ]
+
+*** How this module works
+
+This module takes tabular turbine efficiency curves (for each unit's reference head) and uses a power function (see Jim Gordon, USBR report ??-??) to artificially construct the efficiency surface of each turbine.
+
+[ There is no practical reason that at some later time the module could not be adapted to make use of a full eff(Q,H) curve. ]
+
+Given either a load or a discharge to optimize the module determines a reasonable discretization size to attack the problem with, does some precomputation, and then runs a two-pass DP to find solutions within the tolerances of the discretization. An exact, but perhaps not exactly-optimal, solution is calculated by interpolation between nearby solutions.
+
+*** Using this module in an integrated LP model
+
+...
+
+
+[ more sections to come ]
+
+*** Known caveats on use
+
+- explicit rough zones need workarounds
+- losses related to high-head conditions need workarounds
+- losses related to penstock bifurcations (shared penstocks) need workarounds
+- no feed forward

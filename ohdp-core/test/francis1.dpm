@@ -1,0 +1,14 @@
+
+unit u1 Francis 250 ft 5000 cfs 70000 kw
+unit u2 Francis 250 ft 5000 cfs 75000 kw
+unit u3 Francis 245 ft 5100 cfs 80000 kw
+unit u4 Francis 245 ft 5100 cfs 80000 kw
+
+# set print options
+delimiter ,
+transpose 1 # rotate output tables
+
+unitsteps 100 # set discretization
+head 250 ft
+solve power
+print solution

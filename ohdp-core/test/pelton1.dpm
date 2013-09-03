@@ -1,0 +1,14 @@
+
+unit u1 Pelton 150 ft 10 cfs 100 kw
+unit u2 Pelton 150 ft 10 cfs 100 kw
+unit u3 Pelton 150 ft 10 cfs 100 kw
+unit u4 Pelton 150 ft 10 cfs 100 kw
+
+# set print options
+delimiter ,
+transpose 1 # rotate output tables
+
+unitsteps 100 # set discretization
+head 150 ft
+solve power
+print solution

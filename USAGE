@@ -22,6 +22,73 @@ Given either a load or a discharge to optimize the module determines a reasonabl
 
 ...
 
+*** Commandline Interface
+
+Typing "ohdp -h" will provide you with a summary of commands (see below). This commandline interface is designed to work as a kind of batch-mode with inputfiles for your model.
+
+ohdp [ -h ] [ -I ] [ -T ] [ -O int ] [ -t int ] [ -d char ] [ -o outfilename ] [ -i infilename ]
+-h             this help
+-I             interactive mode
+-T             transpose all output to vertical tables (ie. for spreadsheet programs)
+-D             Debug mode (extra details)
+-S identifier  Define symbol 'identifier'
+-t int         test level (1, 2)
+                 1 API test mode
+                 2 Input file test mode
+-d char        set output delimiter to single character 'char'
+-o outputfile  new file to put output of run
+-i inputfile   existing input file
+Example to create spreadsheet readable output:
+ohdp -T -d , -o basictest.csv -i basictest.dp
+
+*** Interactive Interface
+
+Typing "ohdp -I" will provide you with an interactive prompt for the module. This method of interacting with the module is designed for 'live' remote control. The set of available commands roughly correspond to the set of commands that are available when using batch-mode (infact, the command parser for controlling the module is shared between the interaction methods). When the interactive mode comes up type 'help' to see the full list of commands available in this mode, and what kind of parameters the use:
+
+c:\>ohdp.exe -I
+ohdp 2.02
+SSE2 intrinsics enabled.
+> help
+ohdp 2.02
+# This help
+> help
+# Quit program
+> end
+# Create a custom efficiency curve
+> curve <curvename> flo <n floats in ascending order>
+> curve <curvename> pow <n floats in ascending order>
+> curve <curvename> eff <n floats>
+# Create a unit from a reference efficiency curve
+> unit <unitname> ( Crossflow | FixedPropeller | Francis | Kaplan | Pelton | Turgo ) <design head> ft <design flow> cfs <generator capacity> kw
+# Create a unit from a custom efficiency curve
+> unit <unitname> <curvename> <design head> ft <design flow> cfs <design kw> kwcapacity <float> [ weight <float> ] [ headloss <float> ] [ geneff <float> ]
+# Specify current head for optimization
+> head <current head> ft
+# Specify discretization of efficiency curve for optimization
+> unitsteps <integer>
+# Optimize for either power or flow
+> solve ( Power | Flow )
+# Print configuration or final solution
+> print ( Solution | Config | Units | Curves | Weights | Weighting )
+# Transpose solution printout
+> transpose ( 0 | 1 )
+# Change solution printout delimiter (use , to make *.csv import easier. Use with no arg to revert to blank.)
+> delimiter <anychar>
+# specify a set of operating points to determine the H/K of
+> op caps <n floats [0...1] in any order>
+# set the dependent variable from which a regression for the operating points will be determined
+> op dep <float> ft
+# perform a regression on the solution to determine the equations for each of the specified operating points
+> dp regress
+# print the regression equations for the set of operating points
+> dp print
+> dp regress
+> dp print
+> end
+
+*** Inputfile Commands
+
+...
 
 [ more sections to come ]
 
